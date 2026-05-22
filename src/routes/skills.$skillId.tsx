@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { skills, projects } from "@/data/portfolio";
+import { skills, projects, type Skill } from "@/data/portfolio";
 
 export const Route = createFileRoute("/skills/$skillId")({
   loader: ({ params }) => {
@@ -28,7 +28,7 @@ export const Route = createFileRoute("/skills/$skillId")({
 });
 
 function SkillDetail() {
-  const { skill } = Route.useLoaderData();
+  const { skill } = Route.useLoaderData() as { skill: Skill };
   const related = projects.filter((p) => skill.relatedProjectIds.includes(p.id));
   const otherSkills = skills.filter((s) => s.id !== skill.id);
 
