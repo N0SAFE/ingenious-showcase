@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,6 +33,16 @@ const marqueeTags = [
   "Systèmes distribués",
 ];
 
+const lookingFor = ["Full-stack", "Frontend", "Product engineering", "DX-oriented work"];
+
+const thingsILike = [
+  "migrations",
+  "monorepos",
+  "APIs",
+  "developer tooling",
+  "refactoring legacy code",
+];
+
 function Home() {
   const featured = projects.slice(0, 4);
   const currentExp = [...experiences]
@@ -48,8 +59,8 @@ function Home() {
     <>
       {/* ============ HERO ============ */}
       <section className="relative min-h-[92vh] flex items-center overflow-hidden">
-        <div className="absolute -top-[10%] -left-[5%] w-[500px] h-[500px] bg-teal/15 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute -bottom-[10%] -right-[5%] w-[600px] h-[600px] bg-deep/40 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-[-10%] left-[-5%] w-125 h-125 bg-teal/15 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[-10%] right-[-5%] w-150 h-150 bg-deep/40 rounded-full blur-[140px] pointer-events-none" />
 
         <div className="relative mx-auto max-w-7xl w-full px-6 md:px-10 pt-16 pb-24 grid grid-cols-12 gap-8 items-end">
           <div className="col-span-12 lg:col-span-8">
@@ -59,7 +70,7 @@ function Home() {
                 className="font-display text-teal-soft tracking-[0.3em] text-[10px] uppercase font-bold reveal"
                 style={{ animationDelay: "0.1s" }}
               >
-                Expert ingénierie du logiciel
+                DX • Libraries • SaaS
               </span>
             </div>
 
@@ -67,12 +78,9 @@ function Home() {
               className="font-display text-[15vw] sm:text-7xl md:text-8xl lg:text-[7.5rem] font-bold leading-[0.9] tracking-[-0.04em] reveal"
               style={{ animationDelay: "0.2s" }}
             >
-              {profile.firstName}{" "}
-              <span className="text-gradient">{profile.lastName}</span>,
+              {profile.firstName} <span className="text-gradient">{profile.lastName}</span>,
               <br />
-              <span className="font-light italic text-muted-foreground">
-                ingénieur logiciel
-              </span>
+              <span className="font-light italic text-muted-foreground">ingénieur logiciel</span>
             </h1>
 
             <p
@@ -100,34 +108,62 @@ function Home() {
 
           {/* Right — editorial stats */}
           <div className="col-span-12 lg:col-span-4 flex flex-col justify-end lg:pb-4">
-            <div className="space-y-10 border-l border-border/40 pl-8">
-              <Reveal delay={600}>
-                <Badge
-                  variant="outline"
-                  className="border-teal/30 bg-teal/10 text-teal-soft/90 rounded-full gap-2 px-3 py-1 text-[10px] uppercase tracking-[0.3em] font-display"
-                >
-                  <span className="h-1.5 w-1.5 rounded-full bg-teal blink" />
-                  Disponible — 2026
-                </Badge>
-              </Reveal>
-              {stats.map((s, i) => (
-                <Reveal key={s.label} delay={700 + i * 120}>
-                  <div className="group">
-                    <div className="font-display text-5xl font-bold tabular-nums text-foreground group-hover:text-teal-soft transition-colors">
-                      {s.value}
-                    </div>
-                    <div className="font-display text-[10px] uppercase tracking-[0.25em] text-muted-foreground mt-2">
-                      {s.label}
+            <div className="space-y-6 border-l border-border/40 pl-8">
+              <Reveal delay={500}>
+                <div className="rounded-3xl border border-border/50 bg-card/40 backdrop-blur p-6 shadow-card max-w-sm">
+                  <div className="flex items-center gap-4">
+                    <Avatar className="h-20 w-20 rounded-2xl border border-border/50">
+                      <AvatarImage
+                        src={profile.photoUrl}
+                        alt={`${profile.firstName} ${profile.lastName}`}
+                      />
+                      <AvatarFallback className="rounded-2xl bg-gradient-accent text-primary-foreground font-display text-2xl font-bold">
+                        {profile.initials}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.3em] text-teal-soft">Portrait</p>
+                      <p className="font-display text-2xl font-semibold mt-1">
+                        {profile.firstName} {profile.lastName}
+                      </p>
+                      <p className="text-sm text-muted-foreground mt-1">{profile.title}</p>
                     </div>
                   </div>
+                  <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+                    {profile.tagline}
+                  </p>
+                </div>
+              </Reveal>
+
+              <div className="space-y-10 pt-4">
+                <Reveal delay={600}>
+                  <Badge
+                    variant="outline"
+                    className="border-teal/30 bg-teal/10 text-teal-soft/90 rounded-full gap-2 px-3 py-1 text-[10px] uppercase tracking-[0.3em] font-display"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-teal blink" />
+                    Disponible — 2026
+                  </Badge>
                 </Reveal>
-              ))}
+                {stats.map((s, i) => (
+                  <Reveal key={s.label} delay={700 + i * 120}>
+                    <div className="group">
+                      <div className="font-display text-5xl font-bold tabular-nums text-foreground group-hover:text-teal-soft transition-colors">
+                        {s.value}
+                      </div>
+                      <div className="font-display text-[10px] uppercase tracking-[0.25em] text-muted-foreground mt-2">
+                        {s.label}
+                      </div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
         <div
-          className="pointer-events-none select-none absolute -bottom-12 md:-bottom-20 -right-6 md:-right-12 font-display font-bold text-[20vw] leading-none tracking-tighter text-foreground/[0.025] reveal-fade"
+          className="pointer-events-none select-none absolute -bottom-12 md:-bottom-20 -right-6 md:-right-12 font-display font-bold text-[20vw] leading-none tracking-tighter text-foreground/2.5 reveal-fade"
           style={{ animationDelay: "1s" }}
           aria-hidden
         >
@@ -163,9 +199,7 @@ function Home() {
           <h2 className="font-display text-3xl md:text-4xl font-semibold leading-tight">
             En poste, en mouvement,
             <br />
-            <span className="italic font-light text-muted-foreground">
-              et toujours curieux.
-            </span>
+            <span className="italic font-light text-muted-foreground">et toujours curieux.</span>
           </h2>
         </Reveal>
         <Reveal className="col-span-12 lg:col-span-7 lg:col-start-6" delay={150}>
@@ -173,13 +207,12 @@ function Home() {
             {currentExp ? (
               <>
                 Actuellement{" "}
-                <span className="text-teal-soft font-medium">{currentExp.position}</span>{" "}
-                chez{" "}
+                <span className="text-teal-soft font-medium">{currentExp.position}</span> chez{" "}
                 <span className="text-teal-soft font-medium">{currentExp.company}</span>.{" "}
                 {currentExp.missions ?? ""}
               </>
             ) : (
-              "Ingénieur logiciel passionné par la conception de produits robustes, lisibles et durables."
+              "Je conçois des produits robustes, lisibles et durables, avec une vraie attention portée au DX."
             )}
           </p>
           <Button
@@ -192,6 +225,37 @@ function Home() {
               <ArrowUpRight />
             </Link>
           </Button>
+        </Reveal>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 md:px-10 pb-28 grid grid-cols-12 gap-8">
+        <Reveal className="col-span-12 lg:col-span-6">
+          <p className="text-[10px] font-display uppercase tracking-[0.3em] text-teal-soft mb-4">
+            Ce que je cherche
+          </p>
+          <h2 className="font-display text-3xl md:text-4xl font-semibold leading-tight max-w-xl">
+            Des équipes qui aiment construire proprement et faire avancer le produit sans théâtre.
+          </h2>
+          <div className="mt-6 flex flex-wrap gap-2">
+            {lookingFor.map((item) => (
+              <Badge key={item} variant="outline" className="rounded-full px-3 py-1 text-xs">
+                {item}
+              </Badge>
+            ))}
+          </div>
+        </Reveal>
+
+        <Reveal className="col-span-12 lg:col-span-6" delay={100}>
+          <p className="text-[10px] font-display uppercase tracking-[0.3em] text-teal-soft mb-4">
+            Ce que j'aime vraiment
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {thingsILike.map((item) => (
+              <Badge key={item} variant="outline" className="rounded-full px-3 py-1 text-xs">
+                {item}
+              </Badge>
+            ))}
+          </div>
         </Reveal>
       </section>
 
@@ -219,7 +283,7 @@ function Home() {
           </Reveal>
         </div>
 
-        <Card className="rounded-none border-x-0 bg-transparent shadow-none">
+        <Card className="rounded-3xl border-border/50 bg-card/35 shadow-card overflow-hidden">
           <ul>
             {featured.map((p, i) => (
               <li key={p.id}>
@@ -241,7 +305,12 @@ function Home() {
                         {p.shortDescription}
                       </p>
                     </div>
-                    <div className="hidden md:flex flex-wrap gap-1.5 max-w-[260px] justify-end">
+                    {p.cover && (
+                      <div className="hidden lg:block h-20 w-32 shrink-0 overflow-hidden rounded-xl border border-border/60 bg-card/50">
+                        <img src={p.cover} alt={p.name} className="h-full w-full object-cover" />
+                      </div>
+                    )}
+                    <div className="hidden md:flex flex-wrap gap-1.5 max-w-65 justify-end">
                       {p.relatedSkillIds.slice(0, 2).map((sid) => (
                         <Badge
                           key={sid}
@@ -259,6 +328,54 @@ function Home() {
             ))}
           </ul>
         </Card>
+      </section>
+
+      {/* ============ SKILLS PREVIEW ============ */}
+      <section className="mx-auto max-w-7xl px-6 md:px-10 pb-28">
+        <div className="flex items-end justify-between mb-14">
+          <Reveal>
+            <p className="text-[10px] font-display uppercase tracking-[0.3em] text-teal-soft mb-3">
+              Quelques compétences
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl font-semibold tracking-tight">
+              Celles que j'utilise vraiment.
+            </h2>
+          </Reveal>
+          <Reveal delay={150}>
+            <Button
+              asChild
+              variant="ghost"
+              className="hidden md:inline-flex font-display uppercase tracking-[0.2em] text-xs text-muted-foreground hover:text-foreground hover:bg-transparent"
+            >
+              <Link to="/skills">
+                Tout voir <ArrowRight />
+              </Link>
+            </Button>
+          </Reveal>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {skills.slice(0, 6).map((s, i) => (
+            <Reveal key={s.id} delay={i * 80}>
+              <Link
+                to="/skills/$skillId"
+                params={{ skillId: s.id }}
+                className="group block rounded-2xl border border-border/50 bg-card/40 p-5 hover:bg-card/70 transition shadow-card"
+              >
+                <p className="font-display text-xl font-semibold group-hover:text-teal-soft transition">
+                  {s.name}
+                </p>
+                <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
+                  {s.shortDescription}
+                </p>
+                <div className="mt-4 flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                  <span>{s.category === "technique" ? "Technique" : "Humaine"}</span>
+                  <span>Niveau {s.level}</span>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
       </section>
 
       {/* ============ CTA ============ */}

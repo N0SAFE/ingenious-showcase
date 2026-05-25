@@ -21,77 +21,69 @@ function About() {
     <article className="mx-auto max-w-3xl px-6 py-20">
       <p className="text-xs uppercase tracking-[0.2em] text-teal-soft mb-4">Présentation</p>
       <h1 className="font-display text-4xl md:text-5xl font-semibold leading-tight">
-        Ingénieur logiciel — humain, conscient, responsable.
+        Développeur web — curieux, autonome, orienté DX.
       </h1>
       <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-        Je suis {profile.firstName} {profile.lastName}, {profile.title.toLowerCase()}. Voici, sans
-        détour, comment je pense mon métier et ce que je cherche à construire.
+        Je suis {profile.firstName} {profile.lastName}, {profile.title.toLowerCase()}. J'aime
+        construire des API, des bibliothèques et des webapps qui simplifient la vie des autres
+        développeurs, tout en gardant une approche simple, lisible et durable.
       </p>
 
       <Section title="Mes valeurs">
         <p>
-          Je crois que <strong className="text-foreground">l'ingénierie logicielle est d'abord un
-          acte humain</strong>. Le code que j'écris influe sur des personnes — utilisateurs, collègues,
-          décideurs — et c'est cette responsabilité, plus que la performance brute, qui guide mes
-          choix.
+          Je veux rester un ingénieur <strong className="text-foreground">curieux</strong>,
+          <strong className="text-foreground"> autonome</strong> et <strong className="text-foreground">orienté équipe</strong>.
+          Le code que j'écris doit servir des personnes réelles : des utilisateurs, des collègues,
+          et parfois même mon futur moi quand il faudra revenir dessus six mois plus tard.
         </p>
         <p>
-          Trois valeurs orientent mon travail au quotidien&nbsp;:
+          Dans cet ordre, mes trois valeurs principales sont&nbsp;:
         </p>
         <ul>
           <li>
-            <strong className="text-foreground">La conscience</strong> — comprendre l'impact des
-            systèmes que je conçois sur les utilisateurs, les équipes et l'environnement.
+            <strong className="text-foreground">Curiosité</strong> — aller chercher la réponse moi-même, tester, comparer et comprendre.
           </li>
           <li>
-            <strong className="text-foreground">La responsabilité</strong> — assumer pleinement les
-            décisions techniques, y compris celles que je ne ferais pas seul.
+            <strong className="text-foreground">Team spirit</strong> — avancer avec les autres, partager le contexte et construire ensemble.
           </li>
           <li>
-            <strong className="text-foreground">La lisibilité</strong> — préférer la solution qui se
-            comprend en cinq minutes à celle qui en impose en cinq lignes.
+            <strong className="text-foreground">Autonomie</strong> — savoir avancer sans attendre qu'on me tienne la main.
           </li>
         </ul>
       </Section>
 
       <Section title="Mon projet professionnel & personnel">
         <p>
-          À moyen terme, je veux assumer un rôle de <strong className="text-foreground">tech lead /
-          architecte</strong> sur des produits à fort impact, dans des équipes qui investissent
-          sérieusement dans la qualité technique sans pour autant tomber dans la sur-ingénierie.
+          À court et moyen terme, je veux faire grandir mon projet de plateforme de déploiement
+          self-hosted jusqu'à en faire quelque chose de vraiment utile, puis continuer à travailler
+          sur des produits SaaS et des outils pour développeurs.
         </p>
         <p>
-          À plus long terme, je souhaite contribuer à la formation des prochains ingénieurs — par
-          du mentorat, par des écrits, et peut-être en enseignant. Je crois que la transmission
-          fait partie intégrante du métier.
+          Sur le plan professionnel, j'aimerais garder un rôle proche du produit et de la technique,
+          là où je peux encore apprendre vite tout en rendant les choses plus simples pour l'équipe.
         </p>
         <p>
-          Sur le plan personnel, je cherche un équilibre durable entre exigence professionnelle,
-          temps long pour les projets de fond, et qualité de vie au quotidien.
+          Sur le plan personnel, mon vrai objectif est de continuer à apprendre par moi-même,
+          de rester sportif, de voyager davantage et de garder un bon équilibre dans le temps.
         </p>
       </Section>
 
       <Section title="Mes principales qualités humaines">
         <ul>
           <li>
-            <strong className="text-foreground">Esprit d'analyse</strong> — je décompose les
-            problèmes complexes avant de proposer.
+            <strong className="text-foreground">Esprit d'analyse</strong> — je décompose les problèmes avant de proposer une solution.
           </li>
           <li>
-            <strong className="text-foreground">Écoute active</strong> — je pose les questions qui
-            font émerger le vrai besoin, pas seulement la demande exprimée.
+            <strong className="text-foreground">Écoute active</strong> — je pose les bonnes questions pour comprendre le besoin réel.
           </li>
           <li>
-            <strong className="text-foreground">Constance</strong> — je tiens le cap sur les projets
-            longs, sans m'épuiser sur des sprints non soutenables.
+            <strong className="text-foreground">Adaptabilité</strong> — je change de contexte sans perdre le fil.
           </li>
           <li>
-            <strong className="text-foreground">Pédagogie</strong> — j'aime expliquer, vulgariser,
-            mettre à niveau quand c'est utile.
+            <strong className="text-foreground">Empathie</strong> — j'essaie de comprendre la perspective des autres avant de répondre.
           </li>
           <li>
-            <strong className="text-foreground">Humilité technique</strong> — je sais reconnaître
-            ce que je ne maîtrise pas et m'entourer en conséquence.
+            <strong className="text-foreground">Initiative</strong> — si je vois une amélioration utile, j'essaie de la pousser plutôt que d'attendre.
           </li>
         </ul>
       </Section>
@@ -102,8 +94,6 @@ function About() {
         </p>
         <ul>
           <li>
-            <strong className="text-foreground">La lecture</strong> — sciences cognitives, design,
-            philosophie de la technique. Mes derniers coups de cœur : <em>Thinking, Fast and Slow</em>{" "}
             et <em>The Design of Everyday Things</em>.
           </li>
           <li>

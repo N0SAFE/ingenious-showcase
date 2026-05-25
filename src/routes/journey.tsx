@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Briefcase, GraduationCap, Award, X, ArrowRight } from "lucide-react";
 import { experiences, projects, skills, type Experience } from "@/data/portfolio";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export const Route = createFileRoute("/journey")({
   head: () => ({
@@ -53,6 +54,7 @@ function JourneyPage() {
                   <div className="pl-12 md:pl-0">
                     <div className="inline-flex items-center gap-2 rounded-xl border border-border/50 bg-card/40 backdrop-blur p-5 hover:bg-card/70 transition shadow-card max-w-md">
                       <Icon className="h-5 w-5 text-teal shrink-0" />
+                      <TimelineLogo experience={exp} />
                       <div>
                         <p className="text-xs text-muted-foreground">{exp.period}</p>
                         <p className="font-display font-semibold mt-0.5 group-hover:text-teal-soft transition">
@@ -62,6 +64,9 @@ function JourneyPage() {
                           <p className="text-sm text-muted-foreground mt-0.5">
                             {exp.company ?? exp.school}
                           </p>
+                        )}
+                        {exp.location && (
+                          <p className="text-xs text-muted-foreground mt-0.5">{exp.location}</p>
                         )}
                       </div>
                     </div>
@@ -100,12 +105,18 @@ function ExperienceModal({ experience: e, onClose }: { experience: Experience; o
         </button>
 
         <p className="text-xs uppercase tracking-[0.2em] text-teal-soft">{e.period}</p>
-        <h2 className="mt-2 font-display text-2xl font-semibold">
-          {e.position ?? e.diploma ?? e.title}
-        </h2>
-        {(e.company || e.school) && (
-          <p className="text-muted-foreground mt-1">{e.company ?? e.school}</p>
-        )}
+        <div className="mt-3 flex items-center gap-4">
+          <TimelineLogo experience={e} size="lg" />
+          <div>
+            <h2 className="font-display text-2xl font-semibold">
+              {e.position ?? e.diploma ?? e.title}
+            </h2>
+            {(e.company || e.school) && (
+              <p className="text-muted-foreground mt-1">{e.company ?? e.school}</p>
+            )}
+            {e.location && <p className="text-xs text-muted-foreground mt-1">{e.location}</p>}
+          </div>
+        </div>
 
         {e.kind === "entreprise" && (
           <div className="mt-6 space-y-4 text-sm">
@@ -194,5 +205,26 @@ function ExperienceModal({ experience: e, onClose }: { experience: Experience; o
         )}
       </div>
     </div>
+  );
+}
+
+function TimelineLogo({
+  experience,
+  size = "md",
+}: {
+  experience: Experience;
+  size?: "md" | "lg";
+}) {
+  const src = experience.companyLogo ?? experience.schoolLogo;
+  const label = experience.company ?? experience.school ?? experience.title ?? experience.position ?? "Expérience";
+  const className = size === "lg" ? "h-14 w-14 rounded-2xl" : "h-10 w-10 rounded-xl";
+
+  return (
+    <Avatar className={`shrink-0 border border-border/50 bg-background ${className}`}>
+      <AvatarImage src={src} alt={label} />
+      <AvatarFallback className="bg-secondary/60 text-xs font-display font-semibold">
+        {label.slice(0, 2).toUpperCase()}
+      </AvatarFallback>
+    </Avatar>
   );
 }

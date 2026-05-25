@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Logo Société Exemple</title>
+  <rect width="128" height="128" rx="28" fill="#0f172a" />
+  <circle cx="64" cy="64" r="40" fill="#14b8a6" opacity="0.25" />
+  <path d="M28 74c13-22 28-33 36-33s23 11 36 33" fill="none" stroke="#14b8a6" stroke-width="10" stroke-linecap="round" />
+  <text x="64" y="72" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="30" fill="#e2e8f0" font-weight="700">SE</text>
+</svg>

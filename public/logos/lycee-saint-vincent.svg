@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Lycée Saint Vincent">
+  <rect width="256" height="256" rx="48" fill="#7c2d12"/>
+  <path d="M64 160l64-72 64 72" fill="none" stroke="#fed7aa" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M92 132h72" stroke="#fed7aa" stroke-width="16" stroke-linecap="round"/>
+  <text x="128" y="220" text-anchor="middle" fill="#fff7ed" font-family="Arial, sans-serif" font-size="18" font-weight="700">Saint Vincent</text>
+</svg>

@@ -16,6 +16,8 @@ import { Route as JourneyRouteImport } from './routes/journey'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SkillsIndexRouteImport } from './routes/skills.index'
+import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as SkillsSkillIdRouteImport } from './routes/skills.$skillId'
 import { Route as ProjectsProjectIdRouteImport } from './routes/projects.$projectId'
 
@@ -54,6 +56,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SkillsIndexRoute = SkillsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SkillsRoute,
+} as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProjectsRoute,
+} as any)
 const SkillsSkillIdRoute = SkillsSkillIdRouteImport.update({
   id: '/$skillId',
   path: '/$skillId',
@@ -75,17 +87,19 @@ export interface FileRoutesByFullPath {
   '/skills': typeof SkillsRouteWithChildren
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/skills/$skillId': typeof SkillsSkillIdRoute
+  '/projects/': typeof ProjectsIndexRoute
+  '/skills/': typeof SkillsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/journey': typeof JourneyRoute
-  '/projects': typeof ProjectsRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/skills': typeof SkillsRouteWithChildren
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/skills/$skillId': typeof SkillsSkillIdRoute
+  '/projects': typeof ProjectsIndexRoute
+  '/skills': typeof SkillsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -98,6 +112,8 @@ export interface FileRoutesById {
   '/skills': typeof SkillsRouteWithChildren
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/skills/$skillId': typeof SkillsSkillIdRoute
+  '/projects/': typeof ProjectsIndexRoute
+  '/skills/': typeof SkillsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,17 +127,19 @@ export interface FileRouteTypes {
     | '/skills'
     | '/projects/$projectId'
     | '/skills/$skillId'
+    | '/projects/'
+    | '/skills/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/contact'
     | '/journey'
-    | '/projects'
     | '/sitemap.xml'
-    | '/skills'
     | '/projects/$projectId'
     | '/skills/$skillId'
+    | '/projects'
+    | '/skills'
   id:
     | '__root__'
     | '/'
@@ -133,6 +151,8 @@ export interface FileRouteTypes {
     | '/skills'
     | '/projects/$projectId'
     | '/skills/$skillId'
+    | '/projects/'
+    | '/skills/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -196,6 +216,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/skills/': {
+      id: '/skills/'
+      path: '/'
+      fullPath: '/skills/'
+      preLoaderRoute: typeof SkillsIndexRouteImport
+      parentRoute: typeof SkillsRoute
+    }
+    '/projects/': {
+      id: '/projects/'
+      path: '/'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof ProjectsRoute
+    }
     '/skills/$skillId': {
       id: '/skills/$skillId'
       path: '/$skillId'
@@ -215,10 +249,12 @@ declare module '@tanstack/react-router' {
 
 interface ProjectsRouteChildren {
   ProjectsProjectIdRoute: typeof ProjectsProjectIdRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
 
 const ProjectsRouteChildren: ProjectsRouteChildren = {
   ProjectsProjectIdRoute: ProjectsProjectIdRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
 }
 
 const ProjectsRouteWithChildren = ProjectsRoute._addFileChildren(
@@ -227,10 +263,12 @@ const ProjectsRouteWithChildren = ProjectsRoute._addFileChildren(
 
 interface SkillsRouteChildren {
   SkillsSkillIdRoute: typeof SkillsSkillIdRoute
+  SkillsIndexRoute: typeof SkillsIndexRoute
 }
 
 const SkillsRouteChildren: SkillsRouteChildren = {
   SkillsSkillIdRoute: SkillsSkillIdRoute,
+  SkillsIndexRoute: SkillsIndexRoute,
 }
 
 const SkillsRouteWithChildren =
@@ -248,3 +286,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

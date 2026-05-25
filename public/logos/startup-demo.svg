@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Logo Startup Démo</title>
+  <rect width="128" height="128" rx="28" fill="#0f172a" />
+  <circle cx="64" cy="64" r="36" fill="#f97316" opacity="0.2" />
+  <path d="M42 82c6-13 13-20 22-20s16 7 22 20" fill="none" stroke="#fb923c" stroke-width="9" stroke-linecap="round" />
+  <text x="64" y="72" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" fill="#fff7ed" font-weight="700">SD</text>
+</svg>

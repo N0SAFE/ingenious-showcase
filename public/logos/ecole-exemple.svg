@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Logo École d'ingénieur</title>
+  <rect width="128" height="128" rx="28" fill="#1e293b" />
+  <path d="M26 68 64 40l38 28-38 28-38-28Z" fill="#38bdf8" opacity="0.22" />
+  <path d="M34 67 64 46l30 21-30 21-30-21Z" fill="none" stroke="#38bdf8" stroke-width="8" stroke-linejoin="round" />
+  <text x="64" y="86" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="26" fill="#e0f2fe" font-weight="700">EI</text>
+</svg>

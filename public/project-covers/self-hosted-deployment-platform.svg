@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-label="Plateforme de déploiement self-hosted">
+  <rect width="1200" height="700" rx="48" fill="#08111f"/>
+  <rect x="58" y="58" width="1084" height="584" rx="32" fill="#0f172a" stroke="#243044"/>
+  <circle cx="300" cy="260" r="88" fill="#2dd4bf" opacity="0.25"/>
+  <circle cx="600" cy="210" r="102" fill="#60a5fa" opacity="0.18"/>
+  <circle cx="900" cy="270" r="86" fill="#a78bfa" opacity="0.22"/>
+  <rect x="220" y="430" width="240" height="120" rx="20" fill="#111827" stroke="#334155"/>
+  <rect x="480" y="390" width="240" height="160" rx="20" fill="#111827" stroke="#334155"/>
+  <rect x="740" y="430" width="240" height="120" rx="20" fill="#111827" stroke="#334155"/>
+  <rect x="252" y="462" width="176" height="12" rx="6" fill="#2dd4bf"/>
+  <rect x="512" y="426" width="176" height="12" rx="6" fill="#60a5fa"/>
+  <rect x="512" y="452" width="140" height="12" rx="6" fill="#334155"/>
+  <rect x="772" y="462" width="176" height="12" rx="6" fill="#a78bfa"/>
+  <text x="600" y="620" text-anchor="middle" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="22">Fleet / preview / deploy</text>
+</svg>

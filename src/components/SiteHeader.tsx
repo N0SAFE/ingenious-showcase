@@ -3,6 +3,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { profile } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const navItems = [
   { to: "/", label: "Accueil" },
@@ -35,9 +36,12 @@ export function SiteHeader() {
     >
       <div className="mx-auto max-w-7xl px-6 md:px-10 h-20 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3 group">
-          <span className="h-9 w-9 bg-teal text-background flex items-center justify-center font-display font-bold text-sm tracking-tight rounded-sm shadow-glow group-hover:rotate-3 transition-transform">
-            {profile.initials.charAt(0)}
-          </span>
+          <Avatar className="h-10 w-10 border border-border/50 shadow-glow transition-transform group-hover:rotate-3">
+            <AvatarImage src={profile.photoUrl} alt={`${profile.firstName} ${profile.lastName}`} />
+            <AvatarFallback className="bg-teal text-background font-display font-bold text-sm tracking-tight rounded-full">
+              {profile.initials}
+            </AvatarFallback>
+          </Avatar>
           <span className="hidden sm:flex flex-col leading-none">
             <span className="font-display font-bold text-sm tracking-tight">
               {profile.firstName} {profile.lastName}
@@ -50,17 +54,14 @@ export function SiteHeader() {
 
         <nav className="hidden md:flex items-center gap-9">
           {navItems.map((item) => {
-            const active =
-              item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
+            const active = item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
             return (
               <Link
                 key={item.to}
                 to={item.to}
                 className={cn(
                   "relative text-[10px] font-display font-bold uppercase tracking-[0.25em] transition-colors",
-                  active
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground",
+                  active ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                 )}
               >
                 {item.label}
@@ -94,8 +95,7 @@ export function SiteHeader() {
         <nav className="md:hidden border-t border-border/40 bg-background/95 backdrop-blur-xl">
           <div className="mx-auto max-w-7xl px-6 py-4 flex flex-col gap-1">
             {[...navItems, { to: "/contact", label: "Contact" }].map((item) => {
-              const active =
-                item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
+              const active = item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
               return (
                 <Link
                   key={item.to}

@@ -25,7 +25,7 @@ function ContactPage() {
         Discutons de votre projet.
       </h1>
       <p className="mt-6 text-lg text-muted-foreground max-w-2xl">
-        Disponible pour des missions de tech lead, d'architecture, d'audit ou de mentorat
+        Disponible pour des missions de développement web, d'architecture, d'audit ou de mentorat
         technique. Le plus simple reste un email — je réponds sous 48h.
       </p>
 

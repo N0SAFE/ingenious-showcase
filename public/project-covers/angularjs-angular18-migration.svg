@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-label="Migration AngularJS vers Angular 18">
+  <rect width="1200" height="700" rx="48" fill="#111827"/>
+  <rect x="60" y="60" width="1080" height="580" rx="30" fill="#0b1220" stroke="#243044"/>
+  <path d="M160 500L320 220L480 500Z" fill="#ef4444" opacity="0.9"/>
+  <path d="M720 500L880 220L1040 500Z" fill="#dd0031" opacity="0.9"/>
+  <rect x="556" y="180" width="88" height="272" rx="18" fill="#2dd4bf"/>
+  <rect x="520" y="216" width="160" height="18" rx="9" fill="#2dd4bf"/>
+  <rect x="520" y="256" width="160" height="18" rx="9" fill="#2dd4bf"/>
+  <rect x="520" y="296" width="160" height="18" rx="9" fill="#2dd4bf"/>
+  <rect x="520" y="336" width="160" height="18" rx="9" fill="#2dd4bf"/>
+  <rect x="520" y="376" width="160" height="18" rx="9" fill="#2dd4bf"/>
+  <text x="600" y="620" text-anchor="middle" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="22">Migration progressive du legacy vers Angular 18</text>
+</svg>

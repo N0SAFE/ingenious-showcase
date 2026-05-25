@@ -12,7 +12,10 @@ export const Route = createFileRoute("/projects/$projectId")({
     meta: [
       { title: `${loaderData?.project.name ?? "Réalisation"} — Mathis Sebille` },
       { name: "description", content: loaderData?.project.shortDescription ?? "" },
-      { property: "og:title", content: `${loaderData?.project.name ?? "Réalisation"} — Mathis Sebille` },
+      {
+        property: "og:title",
+        content: `${loaderData?.project.name ?? "Réalisation"} — Mathis Sebille`,
+      },
       { property: "og:description", content: loaderData?.project.shortDescription ?? "" },
     ],
   }),
@@ -47,7 +50,12 @@ function ProjectDetail() {
       </h1>
       <p className="mt-5 text-lg text-muted-foreground">{project.shortDescription}</p>
 
-      {/* Sous-menu vers autres réalisations */}
+      {project.cover && (
+        <div className="mt-8 overflow-hidden rounded-2xl border border-border/50 bg-card/40 shadow-card">
+          <img src={project.cover} alt={project.name} className="h-auto w-full object-cover" />
+        </div>
+      )}
+
       <nav className="mt-8 -mx-1 overflow-x-auto">
         <div className="flex gap-2 px-1 pb-2">
           {otherProjects.map((p) => (
@@ -63,35 +71,40 @@ function ProjectDetail() {
         </div>
       </nav>
 
-      <Section title="Présentation">
-        <p>{project.presentation}</p>
-      </Section>
+      {project.presentation && (
+        <Section title="Présentation">
+          <p>{project.presentation}</p>
+        </Section>
+      )}
 
-      <Section title="Objectifs, contexte, enjeu, risques">
-        <p>{project.objectives}</p>
-      </Section>
+      {project.objectives && (
+        <Section title="Objectifs & contexte">
+          <p>{project.objectives}</p>
+        </Section>
+      )}
 
-      <Section title="Les étapes — ce que j'ai fait">
-        <ul>
-          {project.steps.map((s, i) => (<li key={i}>{s}</li>))}
-        </ul>
-      </Section>
+      {project.steps.length > 0 && (
+        <Section title="Étapes clés">
+          <ul>
+            {project.steps.map((s, i) => (
+              <li key={i}>{s}</li>
+            ))}
+          </ul>
+        </Section>
+      )}
 
-      <Section title="Les acteurs — les interactions">
-        <p>{project.actors}</p>
-      </Section>
+      {project.results && (
+        <Section title="Résultats & impact">
+          <p>{project.results}</p>
+        </Section>
+      )}
 
-      <Section title="Les résultats">
-        <p>{project.results}</p>
-      </Section>
-
-      <Section title="Les lendemains du projet">
-        <p>{project.aftermath}</p>
-      </Section>
-
-      <Section title="Mon regard critique">
-        <p>{project.critique}</p>
-      </Section>
+      {(project.aftermath || project.critique) && (
+        <Section title="Analyse & perspectives">
+          {project.aftermath && <p>{project.aftermath}</p>}
+          {project.critique && <p>{project.critique}</p>}
+        </Section>
+      )}
 
       {related.length > 0 && (
         <Section title="Compétences rattachées">

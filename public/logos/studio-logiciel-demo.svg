@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Logo Studio Logiciel Démo</title>
+  <rect width="128" height="128" rx="28" fill="#111827" />
+  <rect x="24" y="24" width="80" height="80" rx="20" fill="#7c3aed" opacity="0.18" />
+  <path d="M34 78c10-18 20-27 30-27s20 9 30 27" fill="none" stroke="#c4b5fd" stroke-width="9" stroke-linecap="round" />
+  <text x="64" y="72" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="26" fill="#f5f3ff" font-weight="700">SL</text>
+</svg>

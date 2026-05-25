@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone, Linkedin, Github } from "lucide-react";
 import { profile } from "@/data/portfolio";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export function SiteFooter() {
   return (
@@ -8,9 +9,12 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl px-6 py-12 grid gap-10 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-3">
-            <span className="h-10 w-10 rounded-full bg-gradient-accent flex items-center justify-center text-primary-foreground font-display font-bold shadow-glow">
-              {profile.initials}
-            </span>
+            <Avatar className="h-10 w-10 border border-border/50 shadow-glow">
+              <AvatarImage src={profile.photoUrl} alt={`${profile.firstName} ${profile.lastName}`} />
+              <AvatarFallback className="bg-gradient-accent text-primary-foreground font-display font-bold">
+                {profile.initials}
+              </AvatarFallback>
+            </Avatar>
             <div>
               <p className="font-display font-semibold">
                 {profile.firstName} {profile.lastName}
