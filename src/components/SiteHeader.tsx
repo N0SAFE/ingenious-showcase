@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { profile } from "@/data/portfolio";
@@ -10,26 +10,45 @@ const navItems = [
   { to: "/skills", label: "Compétences" },
   { to: "/projects", label: "Réalisations" },
   { to: "/journey", label: "Parcours" },
-  { to: "/contact", label: "Contact" },
 ] as const;
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border/50">
-      <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
+    <header
+      className={cn(
+        "sticky top-0 z-50 transition-all duration-500",
+        scrolled
+          ? "backdrop-blur-xl bg-background/70 border-b border-border/40"
+          : "bg-transparent border-b border-transparent",
+      )}
+    >
+      <div className="mx-auto max-w-7xl px-6 md:px-10 h-20 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3 group">
-          <span className="h-9 w-9 rounded-full bg-gradient-accent flex items-center justify-center text-primary-foreground font-display font-bold text-sm shadow-glow">
-            {profile.initials}
+          <span className="h-9 w-9 bg-teal text-background flex items-center justify-center font-display font-bold text-sm tracking-tight rounded-sm shadow-glow group-hover:rotate-3 transition-transform">
+            {profile.initials.charAt(0)}
           </span>
-          <span className="font-display font-semibold text-sm tracking-tight">
-            {profile.firstName} <span className="text-muted-foreground">{profile.lastName}</span>
+          <span className="hidden sm:flex flex-col leading-none">
+            <span className="font-display font-bold text-sm tracking-tight">
+              {profile.firstName} {profile.lastName}
+            </span>
+            <span className="text-[10px] uppercase tracking-[0.25em] text-teal-soft/70 mt-1">
+              Ingénieur logiciel
+            </span>
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden md:flex items-center gap-9">
           {navItems.map((item) => {
             const active =
               item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
@@ -38,16 +57,28 @@ export function SiteHeader() {
                 key={item.to}
                 to={item.to}
                 className={cn(
-                  "px-3 py-2 text-sm rounded-md transition-colors",
+                  "relative text-[10px] font-display font-bold uppercase tracking-[0.25em] transition-colors",
                   active
-                    ? "text-foreground bg-secondary/60"
-                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/30",
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground",
                 )}
               >
                 {item.label}
+                <span
+                  className={cn(
+                    "absolute -bottom-2 left-0 h-px bg-teal transition-all duration-300",
+                    active ? "w-full" : "w-0 group-hover:w-full",
+                  )}
+                />
               </Link>
             );
           })}
+          <Link
+            to="/contact"
+            className="text-[10px] font-display font-bold uppercase tracking-[0.25em] px-4 py-2 rounded-full border border-teal/30 bg-teal/10 text-teal-soft hover:bg-teal/20 transition"
+          >
+            Contact
+          </Link>
         </nav>
 
         <button
@@ -60,9 +91,9 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <nav className="md:hidden border-t border-border/50 bg-background/95">
-          <div className="mx-auto max-w-6xl px-6 py-3 flex flex-col gap-1">
-            {navItems.map((item) => {
+        <nav className="md:hidden border-t border-border/40 bg-background/95 backdrop-blur-xl">
+          <div className="mx-auto max-w-7xl px-6 py-4 flex flex-col gap-1">
+            {[...navItems, { to: "/contact", label: "Contact" }].map((item) => {
               const active =
                 item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
               return (
@@ -71,7 +102,7 @@ export function SiteHeader() {
                   to={item.to}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "px-3 py-2 text-sm rounded-md transition-colors",
+                    "px-3 py-3 text-sm font-display uppercase tracking-widest rounded-md transition-colors",
                     active
                       ? "text-foreground bg-secondary/60"
                       : "text-muted-foreground hover:text-foreground",
