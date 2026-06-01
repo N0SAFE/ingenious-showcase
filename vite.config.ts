@@ -17,6 +17,7 @@ export default defineConfig({
     port: 80,
     host: true,
     strictPort: true,
-    allowedHosts: ["portfolio.sebille.net"],
+    allowedHosts: ["portfolio.sebille.net", "localhost", "127.0.0.1"],
+    middlewareMode: false,
   },
 });
