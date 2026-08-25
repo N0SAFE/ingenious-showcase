@@ -151,7 +151,7 @@ function Home() {
                     className="border-teal/30 bg-teal/10 text-teal-soft/90 rounded-full gap-2 px-3 py-1 text-[10px] uppercase tracking-[0.3em] font-display"
                   >
                     <span className="h-1.5 w-1.5 rounded-full bg-teal blink" />
-                    Disponible — 2026
+                    Disponible — 2027
                   </Badge>
                 </Reveal>
                 {stats.map((s, i) => (
@@ -295,7 +295,7 @@ function Home() {
         <Card className="rounded-3xl border-border/50 bg-card/35 shadow-card overflow-hidden">
           <ul>
             {featured.map((p, i) => (
-              <li key={p.id}>
+              <li key={p.id} className="px-4">
                 {i > 0 && <Separator className="bg-border/40" />}
                 <Reveal delay={i * 80}>
                   <Link

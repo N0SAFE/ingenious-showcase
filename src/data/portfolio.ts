@@ -877,7 +877,7 @@ export const experiences: Experience[] = [
     location: "Paris Bastille",
     position: "Développeur full-stack",
     company: "Affluences",
-    companyLogo: "/logos/affluences.svg",
+    companyLogo: "/logos/affluences.webp",
     responsibility: "Alternant au sein de l'équipe produit",
     status: "Alternant",
     missions:
@@ -906,7 +906,7 @@ export const experiences: Experience[] = [
     location: "Paris",
     position: "Développeur full-stack",
     company: "Sitel Group",
-    companyLogo: "/logos/sitel-group.svg",
+    companyLogo: "/logos/foundever.jpeg",
     responsibility: "Intégration d'API et contribution produit",
     missions:
       "Intégration d'API Facebook, Twitter et Twilio, développement, tests et collaboration.",
@@ -946,7 +946,7 @@ export const experiences: Experience[] = [
     location: "Paris",
     position: "Technicien informatique",
     company: "Sitel Group",
-    companyLogo: "/logos/sitel-group.svg",
+    companyLogo: "/logos/foundever.jpeg",
     responsibility: "Support et formation aux outils",
     missions: "Formation aux outils et aux processus, support informatique et diagnostic.",
     relatedSkillIds: [
@@ -965,7 +965,7 @@ export const experiences: Experience[] = [
     diploma: "Master Expert en Ingénierie Logicielle",
     school: "ISCOD",
     schoolUrl: "https://www.iscod.fr/",
-    schoolLogo: "/logos/iscod.svg",
+    schoolLogo: "/logos/iscod.png",
     pedagogy: "Alternance orientée mise en pratique, autonomie et montée en compétence continue.",
   },
   {
@@ -975,7 +975,7 @@ export const experiences: Experience[] = [
     startYear: 2022,
     diploma: "Licence Informatique – option web",
     school: "Lycée Saint Vincent — Senlis",
-    schoolLogo: "/logos/lycee-saint-vincent.svg",
+    schoolLogo: "/logos/lycee-saint-vincent.png",
     pedagogy: "Formation qui m'a permis d'affiner mes bases web.",
   },
   {
@@ -985,7 +985,7 @@ export const experiences: Experience[] = [
     startYear: 2020,
     diploma: "BTS SIO",
     school: "Lycée Saint Vincent — Senlis",
-    schoolLogo: "/logos/lycee-saint-vincent.svg",
+    schoolLogo: "/logos/lycee-saint-vincent.png",
     pedagogy: "Base technique solide et premières habitudes de travail en informatique.",
   },
   {
@@ -995,7 +995,7 @@ export const experiences: Experience[] = [
     startYear: 2017,
     diploma: "BAC STI2D",
     school: "Lycée Jean Monnet — Crépy-en-Valois",
-    schoolLogo: "/logos/lycee-jean-monnet.svg",
+    schoolLogo: "/logos/lycee-jean-monnet.jpg",
     pedagogy: "Une formation qui m'a donné le goût des systèmes techniques.",
   },
 ];
