@@ -23,6 +23,9 @@ export const Route = createFileRoute("/skills/")({
 });
 
 function SkillsPage() {
+  const techniqueCount = skills.filter((s) => s.category === "technique").length;
+  const humaineCount = skills.length - techniqueCount;
+
   return (
     <div className="mx-auto max-w-6xl px-6 py-20">
       <p className="text-xs uppercase tracking-[0.2em] text-teal-soft mb-4">Compétences</p>
@@ -30,9 +33,10 @@ function SkillsPage() {
         Une carte pour situer chaque compétence par rapport aux autres.
       </h1>
       <p className="mt-6 text-lg text-muted-foreground max-w-2xl">
-        Les 10 compétences sont réparties en deux domaines — six techniques et quatre humaines — et
-        chaque barre indique mon niveau relatif par rapport aux autres. Cliquez sur une compétence
-        pour lire son article détaillé : définition, preuves, autocritique et évolution.
+        Mes {skills.length} compétences sont réparties en deux domaines — {techniqueCount}{" "}
+        techniques et {humaineCount} humaines — et chaque barre indique mon niveau relatif par
+        rapport aux autres. Cliquez sur une compétence pour lire son article détaillé : définition,
+        preuves, autocritique et évolution.
       </p>
 
       <div className="mt-14">

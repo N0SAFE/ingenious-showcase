@@ -10,7 +10,10 @@ export function SiteFooter() {
         <div>
           <div className="flex items-center gap-3">
             <Avatar className="h-10 w-10 border border-border/50 shadow-glow">
-              <AvatarImage src={profile.photoUrl} alt={`${profile.firstName} ${profile.lastName}`} />
+              <AvatarImage
+                src={profile.photoUrl}
+                alt={`${profile.firstName} ${profile.lastName}`}
+              />
               <AvatarFallback className="bg-gradient-accent text-primary-foreground font-display font-bold">
                 {profile.initials}
               </AvatarFallback>
@@ -28,11 +31,31 @@ export function SiteFooter() {
         <div>
           <h3 className="text-sm font-display font-semibold mb-4">Navigation</h3>
           <ul className="space-y-2 text-sm text-muted-foreground">
-            <li><Link to="/about" className="hover:text-foreground">À propos</Link></li>
-            <li><Link to="/skills" className="hover:text-foreground">Compétences</Link></li>
-            <li><Link to="/projects" className="hover:text-foreground">Réalisations</Link></li>
-            <li><Link to="/journey" className="hover:text-foreground">Parcours</Link></li>
-            <li><Link to="/contact" className="hover:text-foreground">Contact</Link></li>
+            <li>
+              <Link to="/about" className="hover:text-foreground">
+                À propos
+              </Link>
+            </li>
+            <li>
+              <Link to="/skills" className="hover:text-foreground">
+                Compétences
+              </Link>
+            </li>
+            <li>
+              <Link to="/projects" className="hover:text-foreground">
+                Réalisations
+              </Link>
+            </li>
+            <li>
+              <Link to="/journey" className="hover:text-foreground">
+                Parcours
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="hover:text-foreground">
+                Contact
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -41,7 +64,9 @@ export function SiteFooter() {
           <ul className="space-y-3 text-sm text-muted-foreground">
             <li className="flex items-center gap-2">
               <Mail className="h-4 w-4 text-teal" />
-              <a href={`mailto:${profile.email}`} className="hover:text-foreground">{profile.email}</a>
+              <a href={`mailto:${profile.email}`} className="hover:text-foreground">
+                {profile.email}
+              </a>
             </li>
             <li className="flex items-center gap-2">
               <Phone className="h-4 w-4 text-teal" />
@@ -53,12 +78,24 @@ export function SiteFooter() {
             </li>
             <li className="flex items-center gap-4 pt-2">
               {profile.linkedin && (
-                <a href={profile.linkedin} target="_blank" rel="noreferrer" className="hover:text-foreground">
+                <a
+                  href={profile.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Profil LinkedIn"
+                  className="inline-flex p-1 -m-1 hover:text-foreground"
+                >
                   <Linkedin className="h-4 w-4" />
                 </a>
               )}
               {profile.github && (
-                <a href={profile.github} target="_blank" rel="noreferrer" className="hover:text-foreground">
+                <a
+                  href={profile.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Profil GitHub"
+                  className="inline-flex p-1 -m-1 hover:text-foreground"
+                >
                   <Github className="h-4 w-4" />
                 </a>
               )}
@@ -68,8 +105,10 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-border/50">
         <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-muted-foreground flex justify-between">
-          <span>© {new Date().getFullYear()} {profile.firstName} {profile.lastName}</span>
-          <span>Portfolio — Expert en ingénierie du logiciel</span>
+          <span>
+            © {new Date().getFullYear()} {profile.firstName} {profile.lastName}
+          </span>
+          <span>Portfolio — {profile.title}</span>
         </div>
       </div>
     </footer>

@@ -28,9 +28,11 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 transition-all duration-500",
+        "sticky top-0 z-50 transition-all duration-300",
         scrolled
-          ? "backdrop-blur-xl bg-background/70 border-b border-border/40"
+          ? // Near-opaque bar: readable over any content even when backdrop-filter
+            // is unsupported or disabled; the blur is just extra polish.
+            "border-b border-border/40 bg-background/95 backdrop-blur-md shadow-card"
           : "bg-transparent border-b border-transparent",
       )}
     >
@@ -47,7 +49,7 @@ export function SiteHeader() {
               {profile.firstName} {profile.lastName}
             </span>
             <span className="text-[10px] uppercase tracking-[0.25em] text-teal-soft/70 mt-1">
-              Ingénieur logiciel
+              {profile.title}
             </span>
           </span>
         </Link>
@@ -59,8 +61,9 @@ export function SiteHeader() {
               <Link
                 key={item.to}
                 to={item.to}
+                aria-current={active ? "page" : undefined}
                 className={cn(
-                  "relative text-[10px] font-display font-bold uppercase tracking-[0.25em] transition-colors",
+                  "group relative text-[10px] font-display font-bold uppercase tracking-[0.25em] transition-colors",
                   active ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                 )}
               >
@@ -85,14 +88,19 @@ export function SiteHeader() {
         <button
           className="md:hidden p-2 rounded-md hover:bg-secondary/40"
           onClick={() => setOpen((v) => !v)}
-          aria-label="Menu"
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
       {open && (
-        <nav className="md:hidden border-t border-border/40 bg-background/95 backdrop-blur-xl">
+        <nav
+          id="mobile-nav"
+          className="md:hidden border-t border-border/40 bg-background/95 backdrop-blur-xl"
+        >
           <div className="mx-auto max-w-7xl px-6 py-4 flex flex-col gap-1">
             {[...navItems, { to: "/contact", label: "Contact" }].map((item) => {
               const active = item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);

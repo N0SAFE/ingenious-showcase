@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Briefcase, GraduationCap, Award, X, ArrowRight } from "lucide-react";
 import { experiences, projects, skills, type Experience } from "@/data/portfolio";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -47,7 +47,9 @@ function JourneyPage() {
             return (
               <li key={exp.id} className="relative">
                 <button
+                  type="button"
                   onClick={() => setOpenId(exp.id)}
+                  aria-haspopup="dialog"
                   className={`group w-full text-left ${side}`}
                 >
                   <div className="absolute left-4 md:left-1/2 -translate-x-1/2 top-2 h-3 w-3 rounded-full bg-teal shadow-glow" />
@@ -83,9 +85,32 @@ function JourneyPage() {
   );
 }
 
-function ExperienceModal({ experience: e, onClose }: { experience: Experience; onClose: () => void }) {
+function ExperienceModal({
+  experience: e,
+  onClose,
+}: {
+  experience: Experience;
+  onClose: () => void;
+}) {
   const linkedSkills = skills.filter((s) => e.relatedSkillIds?.includes(s.id));
   const linkedProjects = projects.filter((p) => e.relatedProjectIds?.includes(p.id));
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onCloseRef.current();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, []);
 
   return (
     <div
@@ -93,10 +118,17 @@ function ExperienceModal({ experience: e, onClose }: { experience: Experience; o
       onClick={onClose}
     >
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${e.position ?? e.diploma ?? e.title} — ${e.company ?? e.school ?? ""}`.replace(
+          / — $/,
+          "",
+        )}
         className="relative max-w-2xl w-full max-h-[85vh] overflow-y-auto rounded-2xl border border-border/50 bg-card shadow-card p-8"
         onClick={(ev) => ev.stopPropagation()}
       >
         <button
+          ref={closeButtonRef}
           onClick={onClose}
           className="absolute top-4 right-4 p-2 rounded-md hover:bg-secondary/60"
           aria-label="Fermer"
@@ -121,10 +153,15 @@ function ExperienceModal({ experience: e, onClose }: { experience: Experience; o
         {e.kind === "entreprise" && (
           <div className="mt-6 space-y-4 text-sm">
             {e.responsibility && (
-              <p><strong className="text-foreground">Responsabilité&nbsp;:</strong> {e.responsibility}</p>
+              <p>
+                <strong className="text-foreground">Responsabilité&nbsp;:</strong>{" "}
+                {e.responsibility}
+              </p>
             )}
             {e.status && (
-              <p><strong className="text-foreground">Statut&nbsp;:</strong> {e.status}</p>
+              <p>
+                <strong className="text-foreground">Statut&nbsp;:</strong> {e.status}
+              </p>
             )}
             {e.missions && (
               <div>
@@ -208,15 +245,14 @@ function ExperienceModal({ experience: e, onClose }: { experience: Experience; o
   );
 }
 
-function TimelineLogo({
-  experience,
-  size = "md",
-}: {
-  experience: Experience;
-  size?: "md" | "lg";
-}) {
+function TimelineLogo({ experience, size = "md" }: { experience: Experience; size?: "md" | "lg" }) {
   const src = experience.companyLogo ?? experience.schoolLogo;
-  const label = experience.company ?? experience.school ?? experience.title ?? experience.position ?? "Expérience";
+  const label =
+    experience.company ??
+    experience.school ??
+    experience.title ??
+    experience.position ??
+    "Expérience";
   const className = size === "lg" ? "h-14 w-14 rounded-2xl" : "h-10 w-10 rounded-xl";
 
   return (

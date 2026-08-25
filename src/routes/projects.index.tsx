@@ -26,11 +26,11 @@ function ProjectsPage() {
     <div className="mx-auto max-w-6xl px-6 py-20">
       <p className="text-xs uppercase tracking-[0.2em] text-teal-soft mb-4">Réalisations</p>
       <h1 className="font-display text-4xl md:text-5xl font-semibold leading-tight max-w-3xl">
-        Cinq projets qui racontent ma manière de faire.
+        {projects.length} projets qui racontent ma manière de faire.
       </h1>
       <p className="mt-6 text-lg text-muted-foreground max-w-2xl">
-        Chaque réalisation est présentée par un nom évocateur, indépendant du contexte
-        d'entreprise, et détaillée dans un article dédié.
+        Chaque réalisation est présentée par un nom évocateur, indépendant du contexte d'entreprise,
+        et détaillée dans un article dédié.
       </p>
 
       <div className="mt-14 grid gap-5 md:grid-cols-2">

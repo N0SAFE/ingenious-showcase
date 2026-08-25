@@ -14,7 +14,8 @@ export const Route = createFileRoute("/sitemap.xml")({
         const all = [...staticPaths, ...skillPaths, ...projectPaths];
 
         const urls = all.map(
-          (p) => `  <url>\n    <loc>${BASE_URL}${p}</loc>\n    <changefreq>monthly</changefreq>\n  </url>`,
+          (p) =>
+            `  <url>\n    <loc>${BASE_URL}${p}</loc>\n    <changefreq>monthly</changefreq>\n  </url>`,
         );
         const xml = [
           `<?xml version="1.0" encoding="UTF-8"?>`,

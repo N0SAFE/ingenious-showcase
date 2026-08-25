@@ -52,12 +52,18 @@ function ProjectDetail() {
 
       {project.cover && (
         <div className="mt-8 overflow-hidden rounded-2xl border border-border/50 bg-card/40 shadow-card">
-          <img src={project.cover} alt={project.name} className="h-auto w-full object-cover" />
+          <img
+            src={project.cover}
+            alt={project.name}
+            decoding="async"
+            className="h-auto w-full object-cover"
+          />
         </div>
       )}
 
-      <nav className="mt-8 -mx-1 overflow-x-auto">
-        <div className="flex gap-2 px-1 pb-2">
+      {/* Sous-menu vers autres réalisations */}
+      <nav className="mt-8 -mx-1 overflow-x-auto scrollbar-none" aria-label="Autres réalisations">
+        <div className="flex gap-2 px-1">
           {otherProjects.map((p) => (
             <Link
               key={p.id}

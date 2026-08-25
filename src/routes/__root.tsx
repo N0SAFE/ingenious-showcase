@@ -79,7 +79,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content: `Portfolio de ${profile.firstName} ${profile.lastName}, ${profile.title}. ${profile.tagline}`,
       },
       { name: "author", content: `${profile.firstName} ${profile.lastName}` },
-      { property: "og:title", content: `${profile.firstName} ${profile.lastName} — ${profile.title}` },
+      {
+        property: "og:title",
+        content: `${profile.firstName} ${profile.lastName} — ${profile.title}`,
+      },
       { property: "og:description", content: profile.tagline },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -107,6 +110,12 @@ function RootShell({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        <a
+          href="#contenu"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-foreground"
+        >
+          Aller au contenu
+        </a>
         {children}
         <Scripts />
       </body>
@@ -121,7 +130,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen flex flex-col">
         <SiteHeader />
-        <main className="flex-1">
+        <main id="contenu" className="flex-1">
           <Outlet />
         </main>
         <SiteFooter />

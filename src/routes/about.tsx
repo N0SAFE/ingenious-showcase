@@ -7,7 +7,7 @@ export const Route = createFileRoute("/about")({
       { title: `À propos — ${profile.firstName} ${profile.lastName}` },
       {
         name: "description",
-        content: `Présentation détaillée de ${profile.firstName} ${profile.lastName}, expert en ingénierie du logiciel : valeurs, projet professionnel, qualités humaines, centres d'intérêt.`,
+        content: `Présentation détaillée de ${profile.firstName} ${profile.lastName}, ${profile.title.toLowerCase()} : valeurs, projet professionnel, qualités humaines, centres d'intérêt.`,
       },
       { property: "og:title", content: `À propos — ${profile.firstName} ${profile.lastName}` },
       { property: "og:description", content: profile.tagline },
@@ -32,22 +32,24 @@ function About() {
       <Section title="Mes valeurs">
         <p>
           Je veux rester un ingénieur <strong className="text-foreground">curieux</strong>,
-          <strong className="text-foreground"> autonome</strong> et <strong className="text-foreground">orienté équipe</strong>.
-          Le code que j'écris doit servir des personnes réelles : des utilisateurs, des collègues,
-          et parfois même mon futur moi quand il faudra revenir dessus six mois plus tard.
+          <strong className="text-foreground"> autonome</strong> et{" "}
+          <strong className="text-foreground">orienté équipe</strong>. Le code que j'écris doit
+          servir des personnes réelles : des utilisateurs, des collègues, et parfois même mon futur
+          moi quand il faudra revenir dessus six mois plus tard.
         </p>
-        <p>
-          Dans cet ordre, mes trois valeurs principales sont&nbsp;:
-        </p>
+        <p>Dans cet ordre, mes trois valeurs principales sont&nbsp;:</p>
         <ul>
           <li>
-            <strong className="text-foreground">Curiosité</strong> — aller chercher la réponse moi-même, tester, comparer et comprendre.
+            <strong className="text-foreground">Curiosité</strong> — aller chercher la réponse
+            moi-même, tester, comparer et comprendre.
           </li>
           <li>
-            <strong className="text-foreground">Team spirit</strong> — avancer avec les autres, partager le contexte et construire ensemble.
+            <strong className="text-foreground">Team spirit</strong> — avancer avec les autres,
+            partager le contexte et construire ensemble.
           </li>
           <li>
-            <strong className="text-foreground">Autonomie</strong> — savoir avancer sans attendre qu'on me tienne la main.
+            <strong className="text-foreground">Autonomie</strong> — savoir avancer sans attendre
+            qu'on me tienne la main.
           </li>
         </ul>
       </Section>
@@ -63,38 +65,42 @@ function About() {
           là où je peux encore apprendre vite tout en rendant les choses plus simples pour l'équipe.
         </p>
         <p>
-          Sur le plan personnel, mon vrai objectif est de continuer à apprendre par moi-même,
-          de rester sportif, de voyager davantage et de garder un bon équilibre dans le temps.
+          Sur le plan personnel, mon vrai objectif est de continuer à apprendre par moi-même, de
+          rester sportif, de voyager davantage et de garder un bon équilibre dans le temps.
         </p>
       </Section>
 
       <Section title="Mes principales qualités humaines">
         <ul>
           <li>
-            <strong className="text-foreground">Esprit d'analyse</strong> — je décompose les problèmes avant de proposer une solution.
+            <strong className="text-foreground">Esprit d'analyse</strong> — je décompose les
+            problèmes avant de proposer une solution.
           </li>
           <li>
-            <strong className="text-foreground">Écoute active</strong> — je pose les bonnes questions pour comprendre le besoin réel.
+            <strong className="text-foreground">Écoute active</strong> — je pose les bonnes
+            questions pour comprendre le besoin réel.
           </li>
           <li>
-            <strong className="text-foreground">Adaptabilité</strong> — je change de contexte sans perdre le fil.
+            <strong className="text-foreground">Adaptabilité</strong> — je change de contexte sans
+            perdre le fil.
           </li>
           <li>
-            <strong className="text-foreground">Empathie</strong> — j'essaie de comprendre la perspective des autres avant de répondre.
+            <strong className="text-foreground">Empathie</strong> — j'essaie de comprendre la
+            perspective des autres avant de répondre.
           </li>
           <li>
-            <strong className="text-foreground">Initiative</strong> — si je vois une amélioration utile, j'essaie de la pousser plutôt que d'attendre.
+            <strong className="text-foreground">Initiative</strong> — si je vois une amélioration
+            utile, j'essaie de la pousser plutôt que d'attendre.
           </li>
         </ul>
       </Section>
 
       <Section title="Mes principaux centres d'intérêt">
-        <p>
-          En dehors du clavier, je nourris ma pratique avec :
-        </p>
+        <p>En dehors du clavier, je nourris ma pratique avec :</p>
         <ul>
           <li>
-            et <em>The Design of Everyday Things</em>.
+            <strong className="text-foreground">La lecture</strong> — des essais sur le logiciel, le
+            produit et le design, dont <em>The Design of Everyday Things</em>.
           </li>
           <li>
             <strong className="text-foreground">La randonnée</strong> — pour le silence, le temps

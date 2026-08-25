@@ -12,7 +12,10 @@ export const Route = createFileRoute("/skills/$skillId")({
     meta: [
       { title: `${loaderData?.skill.name ?? "Compétence"} — Mathis Sebille` },
       { name: "description", content: loaderData?.skill.shortDescription ?? "" },
-      { property: "og:title", content: `${loaderData?.skill.name ?? "Compétence"} — Mathis Sebille` },
+      {
+        property: "og:title",
+        content: `${loaderData?.skill.name ?? "Compétence"} — Mathis Sebille`,
+      },
       { property: "og:description", content: loaderData?.skill.shortDescription ?? "" },
     ],
   }),
@@ -42,7 +45,8 @@ function SkillDetail() {
       </Link>
 
       <p className="text-xs uppercase tracking-[0.2em] text-teal-soft mb-3">
-        {skill.category === "technique" ? "Compétence technique" : "Compétence humaine"} · niveau {skill.level}
+        {skill.category === "technique" ? "Compétence technique" : "Compétence humaine"} · niveau{" "}
+        {skill.level}
       </p>
       <h1 className="font-display text-4xl md:text-5xl font-semibold leading-tight">
         {skill.name}
@@ -50,8 +54,8 @@ function SkillDetail() {
       <p className="mt-5 text-lg text-muted-foreground">{skill.shortDescription}</p>
 
       {/* Sous-menu vers autres compétences */}
-      <nav className="mt-8 -mx-1 overflow-x-auto">
-        <div className="flex gap-2 px-1 pb-2">
+      <nav className="mt-8 -mx-1 overflow-x-auto scrollbar-none" aria-label="Autres compétences">
+        <div className="flex gap-2 px-1">
           {otherSkills.map((s) => (
             <Link
               key={s.id}
@@ -81,7 +85,8 @@ function SkillDetail() {
                   <strong className="text-foreground">Résultat&nbsp;:</strong> {a.result}
                 </p>
                 <p className="mt-1">
-                  <strong className="text-foreground">Ma valeur ajoutée&nbsp;:</strong> {a.valueAdded}
+                  <strong className="text-foreground">Ma valeur ajoutée&nbsp;:</strong>{" "}
+                  {a.valueAdded}
                 </p>
                 {linked && (
                   <Link
@@ -100,20 +105,38 @@ function SkillDetail() {
 
       <Section title="Mon autocritique">
         <ul>
-          <li><strong className="text-foreground">Maîtrise&nbsp;:</strong> {skill.selfCritique.mastery}</li>
-          <li><strong className="text-foreground">Priorité dans mon profil&nbsp;:</strong> {skill.selfCritique.priority}</li>
+          <li>
+            <strong className="text-foreground">Maîtrise&nbsp;:</strong>{" "}
+            {skill.selfCritique.mastery}
+          </li>
+          <li>
+            <strong className="text-foreground">Priorité dans mon profil&nbsp;:</strong>{" "}
+            {skill.selfCritique.priority}
+          </li>
           {skill.selfCritique.acquisitionSpeed && (
-            <li><strong className="text-foreground">Vitesse d'acquisition&nbsp;:</strong> {skill.selfCritique.acquisitionSpeed}</li>
+            <li>
+              <strong className="text-foreground">Vitesse d'acquisition&nbsp;:</strong>{" "}
+              {skill.selfCritique.acquisitionSpeed}
+            </li>
           )}
-          <li><strong className="text-foreground">Mon recul / conseil&nbsp;:</strong> {skill.selfCritique.advice}</li>
+          <li>
+            <strong className="text-foreground">Mon recul / conseil&nbsp;:</strong>{" "}
+            {skill.selfCritique.advice}
+          </li>
         </ul>
       </Section>
 
       <Section title="Mon évolution">
-        <p><strong className="text-foreground">Cap visé&nbsp;:</strong> {skill.evolution.targetLevel}</p>
-        <p className="mt-3"><strong className="text-foreground">Formations en cours ou à venir&nbsp;:</strong></p>
+        <p>
+          <strong className="text-foreground">Cap visé&nbsp;:</strong> {skill.evolution.targetLevel}
+        </p>
+        <p className="mt-3">
+          <strong className="text-foreground">Formations en cours ou à venir&nbsp;:</strong>
+        </p>
         <ul>
-          {skill.evolution.trainings.map((t, i) => (<li key={i}>{t}</li>))}
+          {skill.evolution.trainings.map((t, i) => (
+            <li key={i}>{t}</li>
+          ))}
         </ul>
       </Section>
 
@@ -127,8 +150,12 @@ function SkillDetail() {
                 params={{ projectId: p.id }}
                 className="group rounded-lg border border-border/50 bg-card/40 p-4 hover:bg-card/70 transition"
               >
-                <p className="font-display font-medium group-hover:text-teal-soft transition">{p.name}</p>
-                <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{p.shortDescription}</p>
+                <p className="font-display font-medium group-hover:text-teal-soft transition">
+                  {p.name}
+                </p>
+                <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                  {p.shortDescription}
+                </p>
               </Link>
             ))}
           </div>

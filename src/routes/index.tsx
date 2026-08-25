@@ -49,10 +49,17 @@ function Home() {
     .filter((e) => e.kind === "entreprise")
     .sort((a, b) => b.startYear - a.startYear)[0];
 
+  const companyStartYears = experiences
+    .filter((e) => e.kind === "entreprise")
+    .map((e) => e.startYear);
+  const yearsOfExperience = companyStartYears.length
+    ? new Date().getFullYear() - Math.min(...companyStartYears)
+    : 0;
+
   const stats = [
     { label: "Réalisations détaillées", value: pad(projects.length) },
     { label: "Compétences cartographiées", value: pad(skills.length) },
-    { label: "Années d'expérience", value: "05+" },
+    { label: "Années d'expérience", value: `${pad(yearsOfExperience)}+` },
   ];
 
   return (
@@ -80,7 +87,9 @@ function Home() {
             >
               {profile.firstName} <span className="text-gradient">{profile.lastName}</span>,
               <br />
-              <span className="font-light italic text-muted-foreground">ingénieur logiciel</span>
+              <span className="font-light italic text-muted-foreground">
+                {profile.title.toLowerCase()}
+              </span>
             </h1>
 
             <p
@@ -173,7 +182,7 @@ function Home() {
 
       {/* ============ MARQUEE ============ */}
       <section className="border-y border-border/40 bg-card/20 overflow-hidden py-6">
-        <div className="flex marquee-track whitespace-nowrap gap-6">
+        <div className="flex marquee-track whitespace-nowrap" aria-hidden="true">
           {Array.from({ length: 2 }).map((_, k) => (
             <div key={k} className="flex items-center gap-6 shrink-0 pr-6">
               {marqueeTags.map((tag) => (
@@ -307,7 +316,13 @@ function Home() {
                     </div>
                     {p.cover && (
                       <div className="hidden lg:block h-20 w-32 shrink-0 overflow-hidden rounded-xl border border-border/60 bg-card/50">
-                        <img src={p.cover} alt={p.name} className="h-full w-full object-cover" />
+                        <img
+                          src={p.cover}
+                          alt={p.name}
+                          loading="lazy"
+                          decoding="async"
+                          className="h-full w-full object-cover"
+                        />
                       </div>
                     )}
                     <div className="hidden md:flex flex-wrap gap-1.5 max-w-65 justify-end">
